@@ -1,0 +1,48 @@
+.intro-block{
+	background:url(../img/introBulb.png) ;
+	padding: 0px 0px 350px;
+	vertical-align: 100px
+	
+
+
+}
+.text-muted{
+	color: #999;
+	font-weight: 100;
+}
+.tpad{
+	padding: 30px;
+}
+.randomquote{
+	background-color: #000;
+	text-align: left;
+	color: #FFF;
+
+}
+
+.tabClr{
+	color:pink;
+	background: grey;
+}
+.brand{
+	color: white;
+	text-align: center;
+	font-size: 200px;
+	font-family: "american typewriter"
+
+}
+#blotTitle{
+	background: url(../img/);
+	color: white;
+	font-family:'american typewriter';
+	text-align: center;
+}
+#poemContent{
+	color:white;
+	font-family: 'american typewriter';
+	font-size: 20px;
+	line-height: 150%;
+	text-align: center;
+
+
+}
