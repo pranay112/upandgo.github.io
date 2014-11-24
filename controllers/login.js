@@ -10,7 +10,7 @@ angular.module('AuthApp',['ui.bootstrap'])
     $scope.scenario='Log in'; //intial ng-show scenario
    
    // To save current user for later login
-   //$scope.currentUser=Parse.User.current();
+   $scope.currentUser=Parse.User.current();
 
    // Login Scenario 
     $scope.logIn=function(form){
@@ -18,21 +18,20 @@ angular.module('AuthApp',['ui.bootstrap'])
             form.password,{
                 success: function(user){
                 $scope.currentUser=user;          
-                var usrTyp = user.get('userType'); // Variable to store userType
+                //var usrTyp = user.get('userType'); // Variable to store userType
+                window.location.replace("index.html");
+                console.log('Logged in as');
                 
-                  //Determining the user type    
-               
-                        window.location.replace("index2.html");
-                  
-                 
-                 
-              
+
                     
                    $scope.$apply(); 
                 },
                error: function(user, error) {
                  alert("Unable to log in: " + error.code + " " + error.message);
                 }
+
+
+
             });
     }
     // Sign Up Scenario 
@@ -56,7 +55,7 @@ angular.module('AuthApp',['ui.bootstrap'])
           success: function(user) {
            
             $scope.currentUser = user;
-            window.location.replace("login.html");
+            window.location.replace("index.html");
             $scope.$apply();
           },
          error: function(user, error) {
@@ -96,12 +95,48 @@ $scope.TabsDemoCtrl=function($scope,$window){
   };
 }
 
+$scope.CommentCtrl=function($scope){
+
+  
+
+  // Connecting to database
+  var AllComments = Parse.Object.extend("Comments");
+  var commentsQuery = new Parse.Query(AllComments);
+
+  // Including Users
+  commentsQuery.include("commentator");
+  // Query Constraints 
+
+  commentsQuery.ascending("createdAt");
+
+  $scope.commentsArray=[];
+
+  commentsQuery.find({
+    success: function(data){
+      for(var i=0; i<data.length; i++){
+        data[i].set("commentator",data[i].get("commentator").toJSON());
+        $scope.commentsArray.push(data[i].toJSON());
+      }
+        $scope.$apply();
+    },
+    error: function(){
+      alert(error);
+    }
+  
+  })
+
+
+
+}
+
   //Logout 
   $scope.logOut=function(form){
     Parse.User.logOut();
+    $scope.chkUser= false;
     window.location.replace("index.html");
-     }
+    console.log($scope.chkUser);
 
+     }
 
 }]);
 
