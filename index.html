@@ -220,10 +220,11 @@
             </div>
         </div>
     </aside>
-
-    <!-- Map -->
-    <section  id="contact" >
-
+    <hr/>
+    <!-- Comments Section -->
+    <section  id="discussion" >
+  <div class="container-fluid">
+  <legend class="legend"><center>Comments and Thoughts</center></legend>
     <div ng-controller="CommentCtrl" class= "well" >
          <center class="well" ng-repeat="oldComment in commentsArray">
            <label class="pull-left">{{oldComment.commentator.firstName}} {{oldComment.commentator.lastName}}</label> <br>
@@ -241,6 +242,7 @@
              <textarea class="form-control" rows="3" ng-model="newComment" type="text" placeholder="Enter your Thoughts" ></textarea> <br>
              <button class="btn btn-default" ng-click="commentSubmit()"> Submit </button>
       </center> 
+    </div>
     </div>
     </section>
 <hr/>
