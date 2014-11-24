@@ -34,22 +34,22 @@
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li class="sidebar-brand">
-                <a href="#top">Chicago Incubators</a>
+                <a href="#top">Up and Go</a>
             </li>
             <li>
-                <a href="#top">Idea Shop IIT</a>
+                <a href="#about">About</a>
             </li>
             <li>
-                <a href="#about">1871</a>
+                <a href="##portfol">Resources at IIT</a>
             </li>
             <li>
-                <a href="#services">Catalyze</a>
+                <a href="#comments">Comments</a>
             </li>
             <li>
-                <a href="#portfolio">TechNexus</a>
+                <a ng-click="logOut()" ng-show="currentUser" href="#top">Log Out</a>
             </li>
-            <li>
-                <a href="#contact">Contact Us</a>
+             <li>
+                <a href="#portfolio">Contact Us</a>
             </li>
         </ul>
     </nav>
@@ -61,6 +61,7 @@
             <h3>A Site for Budding IIT Enterprenuers</h3>
             <br>
             <a href="#about" class="btn btn-dark btn-lg">Find Out More</a>
+            <a href="#comments" class="btn btn-dark btn-lg">Leave us a Comment</a>
         </div>
 
        <!-- Login Box -->
@@ -170,7 +171,7 @@
                                 <h4>
                                     <strong>1871</strong>
                                 </h4>
-                                <p>The story of the Great Chicago Fire of 1871 isn’t really about the fire.<br> It’s about what happened next: A remarkable moment when the most brilliant engineers, architects and inventors came together to build a new city.<br>
+                                <p>A remarkable place where the most brilliant engineers and inventors came together to build a new city</p>                               
                                 <a href="http://www.1871.com/" class="btn btn-light">Learn More</a>
                             </div>
                         </div>
@@ -196,7 +197,7 @@
                                 <h4>
                                     <strong>TechnNexus</strong>
                                 </h4>
-                                <p>We jumpstart corporate engagement withtech entreprenuers.</p>
+                                <p>We jumpstart corporate engagement with tech entreprenuers.</p>
                                 <a href="http://www.technexus.com/" class="btn btn-light">Learn More</a>
                             </div>
                         </div>
@@ -222,12 +223,12 @@
     </aside>
     <hr/>
     <!-- Comments Section -->
-    <section  id="discussion" >
+    <section  id="comments" >
   <div class="container-fluid">
   <legend class="legend"><center>Comments and Thoughts</center></legend>
     <div ng-controller="CommentCtrl" class= "well" >
          <center class="well" ng-repeat="oldComment in commentsArray">
-           <label class="pull-left">{{oldComment.commentator.firstName}} {{oldComment.commentator.lastName}}</label> <br>
+           <label class="pull-left">{{oldComment.commentator.firstName}} {{oldComment.commentator.lastName}}  </label> <br>
            <p>{{oldComment.comment}}</p><br>
            <label class="pull-left">{{oldComment.createdAt}}</label> <br>
           
@@ -238,10 +239,18 @@
     </div>
     <div class="container-fluid">
       <center  ng-show="currentUser" >
-              <p>{{newComment}}</p>
+              <p>Your thoughts and comments       "   {{newComment}}   "</p>
              <textarea class="form-control" rows="3" ng-model="newComment" type="text" placeholder="Enter your Thoughts" ></textarea> <br>
-             <button class="btn btn-default" ng-click="commentSubmit()"> Submit </button>
+             <button class="btn btn-default" ng-click="commentSubmit()"> Submit Comment </button>
+
+
       </center> 
+      <center ng-show="!currentUser">
+         <a href="#top" ng-click='scenario="Sign up"'
+              class="btn btn-default"> Sign up</a>
+                <a href="#top" ng-click='scenario="Log in"'
+              class="btn btn-default"> Login</a>
+      </center>
     </div>
     </div>
     </section>
