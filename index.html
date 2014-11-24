@@ -222,27 +222,28 @@
     </aside>
 
     <!-- Map -->
-    <section ng-show="currentUser" id="contact" ng-controller="CommentCtrl">
+    <section  id="contact" >
 
-    <div class= "well" ng-repeat="oldComment in commentsArray">
-         <center class="well">
+    <div ng-controller="CommentCtrl" class= "well" >
+         <center class="well" ng-repeat="oldComment in commentsArray">
            <label class="pull-left">{{oldComment.commentator.firstName}} {{oldComment.commentator.lastName}}</label> <br>
            <p>{{oldComment.comment}}</p><br>
            <label class="pull-left">{{oldComment.createdAt}}</label> <br>
           
-           <p>{{comment}}</p>
+         
              
     </center> 
           
     </div>
-    <center class="commentBox">
-           
-           <textarea class="form-control" rows="3" ng-model="comment" type="text" placeholder="Enter your Thoughts" ></textarea> <br>
-           <button class="btn btn-default" ng-click="commentSubmit(user)"> Submit </button>
-    </center> 
-       
+    <div class="container-fluid">
+      <center  ng-show="currentUser" >
+              <p>{{newComment}}</p>
+             <textarea class="form-control" rows="3" ng-model="newComment" type="text" placeholder="Enter your Thoughts" ></textarea> <br>
+             <button class="btn btn-default" ng-click="commentSubmit()"> Submit </button>
+      </center> 
+    </div>
     </section>
-
+<hr/>
     <!-- Portfolio -->
     <section id="portfolio" class="portfolio">
         <div class="container">

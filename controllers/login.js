@@ -100,22 +100,26 @@ $scope.CommentCtrl=function($scope){
   
 
   // Connecting to database
-  var AllComments = Parse.Object.extend("Comments");
-  var commentsQuery = new Parse.Query(AllComments);
+  var Comments = Parse.Object.extend("Comments");
+  var commentsQuery = new Parse.Query(Comments);
 
   // Including Users
   commentsQuery.include("commentator");
   // Query Constraints 
 
-  commentsQuery.ascending("createdAt");
+  commentsQuery.descending("createdAt");
+  commentsQuery.limit(10);
 
   $scope.commentsArray=[];
 
   commentsQuery.find({
     success: function(data){
+      var j = data.length - 1;
       for(var i=0; i<data.length; i++){
+        console.log(data.length);
         data[i].set("commentator",data[i].get("commentator").toJSON());
-        $scope.commentsArray.push(data[i].toJSON());
+        $scope.commentsArray.push(data[j].toJSON());
+        j--;
       }
         $scope.$apply();
     },
@@ -127,7 +131,28 @@ $scope.CommentCtrl=function($scope){
 
 
 
+
 }
+$scope.commentSubmit = function(){
+  // Connecting to database
+    var Comments = Parse.Object.extend("Comments");
+    var newComment = new Comments();
+
+//    $scope.newComment=null;
+    newComment.set("commentator",$scope.currentUser);
+    newComment.set("comment",$scope.newComment);
+
+    newComment.save(null,{
+      success : function(newComment){
+        console.log("Comment saved");
+        window.location.reload();
+      },
+      error: function(newComment,error){
+        console.log(error);
+      }
+    })
+
+  }
 
   //Logout 
   $scope.logOut=function(form){
