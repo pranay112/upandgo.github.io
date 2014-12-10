@@ -1,7 +1,7 @@
 //Login and Sign Up
 
 //Parse Keys 
-Parse.initialize("9WJJ2iWhg4z1wmdJNL3pDvIgTMFBUPvJpj1Vs95M","3ceGKz096rbMxTfUSa99pqvSpi0gYxxhY5rbjdUu");
+Parse.initialize("IOoSACRRCTKmrzo0Lxrq3tLJuGV1Zf4s5zmifOI9","zqE3SrtBitsrjhkcuMgVtyjOWi7bhrZ7gQHfbg5h");
 
 //App initialization 
 angular.module('AuthApp',['ui.bootstrap'])
@@ -12,27 +12,17 @@ angular.module('AuthApp',['ui.bootstrap'])
    // To save current user for later login
    $scope.currentUser=Parse.User.current();
 
-
    // Login Scenario 
     $scope.logIn=function(form){
         Parse.User.logIn(form.email,
             form.password,{
                 success: function(user){
                 $scope.currentUser=user;          
-                var usrTyp = user.get('userType'); // Variable to store userType
+                //var usrTyp = user.get('userType'); // Variable to store userType
                 window.location.replace("index.html");
                 console.log('Logged in as');
-                $scope.fName= $scope.currentUser.get("firstName");
-              //  console.log($scope.fName);
-
                 
-                  //Determining the user type    
-                  if (usrTyp=="emp"){
-                        window.location.replace("employee.html");
-                  }
-                  else if(usrTyp=="cust") {
-                        window.location.replace("index.html");
-                  }
+
                     
                    $scope.$apply(); 
                 },
@@ -51,7 +41,7 @@ angular.module('AuthApp',['ui.bootstrap'])
         user.set("firstName",form.firstName);
         user.set("lastName",form.lastName);
         user.set("email", form.email);
-        user.set("userType","cust"); // Setting the default user type as "customer"
+        user.set("userType","customer"); // Setting the default user type as "customer"
     
         //Confirming password
         if(form.password==form.cpassword){
